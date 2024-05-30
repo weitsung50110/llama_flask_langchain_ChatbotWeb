@@ -8,7 +8,8 @@ Using ollama nlp LLM to combine with flask to let the LLM can be shown on web.
 
 weitsung50110/ollama_flask裡面我已經把ollama和flask都安裝完成了，並把llama3和llama2也已經安裝在本地了。
 
-#### 2. run images,in order to generate conatiner
+#### 2. Run image in order to generate container
+ ~/trans_project掛載到容器內的app資料夾下面， ~/trans_project是在ubuntu中的寫法，若你是windows請自行更改並創建資料夾。
 
         docker run -d \
         -v ollama:/root/.ollama \
