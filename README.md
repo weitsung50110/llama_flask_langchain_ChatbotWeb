@@ -41,9 +41,11 @@ weitsung50110/ollama_flask裡面我已經把ollama和flask都安裝完成了，�
 
         docker exec -it ollama_flask /bin/bash
 
-- 若想要單獨使用ollama看看可以輸入
+- 請一定要先輸入以下指令
 
       ollama run llama3
+
+> **_如果你沒有先把llama3安裝在container裡面的話，flask會無法打開_**
 
 #### 4. 若想要使用ollama和flask結合的web網頁版nlp llm功能，請先進入 /app/flask 當中
 
