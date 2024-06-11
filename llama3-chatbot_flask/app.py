@@ -21,15 +21,10 @@ llama_model = Ollama(model="llama3")
 '''若沒特別指定def parse，回傳方法則會使用預設，所以Lotus : 就會不見ㄌ'''
 class MyOutputParser(StrOutputParser):
     def parse(self, text):
-        text = "Lotus : " + text
+        text = "AI : " + text
         return text
 
 text_sys = "You are my personal assistant"
-
-# 定義一個函數來格式化文本，將 Markdown 粗體語法轉換為 HTML strong 標籤
-# def format_output(text):
-#     """Convert Markdown bold syntax to HTML strong tags."""
-#     return re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
 
 # 定義初始化聊天機器人的函數
 def initialise_llama3(text_sys):
