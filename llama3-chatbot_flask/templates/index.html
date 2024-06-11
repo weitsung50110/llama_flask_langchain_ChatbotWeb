@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weiberson's llama Bot</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="max-w-4xl mx-auto p-4 bg-white shadow-lg rounded-lg mt-10">
+        <div class="flex items-center justify-center mb-4">
+            <img class="h-32 w-auto" src="../static/images/welcome4.png" alt="Welcome Image">
+        </div>
+        <h1 class="text-3xl font-bold text-center mb-6">
+            Weiberson's llama Bot
+            <button onclick="location.reload();" class="ml-2 px-2 py-1 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 focus:outline-none">Refresh</button>
+        </h1>
+
+        <form id="chat-form" method="POST" action="/">
+            <div class="flex items-center space-x-2 mb-4">
+                <a href="https://github.com/weitsung50110" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">GitHub</a>
+                <a href="https://medium.com/@weiberson" target="_blank" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none">Medium</a>
+                <a href="https://tw.linkedin.com/in/weiberson" target="_blank" class="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 focus:outline-none">LinkedIn</a>
+            </div>
+            <div class="flex items-center space-x-2">
+                <input type="text" class="flex-grow px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="query-input" name="query-input" required placeholder="Type your message">
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
+                    GO
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-6">
+            {% if query_input %}
+            <div class="bg-gray-100 p-4 rounded mb-4">
+                <p class="text-gray-700">{{ query_input }}</p>
+            </div>
+            {% endif %}
+            {% if output %}
+            <div class="bg-gray-100 p-4 rounded">
+                <p class="text-gray-700">{{ output }}</p> <!-- Use the safe filter to render HTML from output -->
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
+
