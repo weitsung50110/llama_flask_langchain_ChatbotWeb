@@ -1,5 +1,28 @@
 # ollama_flask_langchain_web
-Using ollama nlp LLM to combine with flask to let the LLM can be shown on web.
+Using ollama nlp LLM to combine with flask to let the LLM can be shown on web. Using LLM as your personal assistant.
+
+歡迎來到 llama Bot，這是一個智能對話機器人網站，採用Llama3, flask, langchain和Tailwind CSS框架，確保你在任何設備上都能獲得最佳的RWD使用體驗。
+
+    langchain_community
+    langchain_core
+    flask 
+
+### Main page
+
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/0.png)
+
+### Navigation bar
+You can connect to all my resources.
+
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/2.png)
+
+### Asking llama3 questions
+    Who are you?
+    
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/1.png)
+    Do you love me?
+    
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/3.png)
 
 ## Docker
 #### 1. 先去把image pull下來
