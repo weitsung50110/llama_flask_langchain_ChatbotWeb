@@ -1,4 +1,4 @@
-# nlp_ollama_flask
+# ollama_flask_langchain_web
 Using ollama nlp LLM to combine with flask to let the LLM can be shown on web.
 
 ## Docker
@@ -51,9 +51,9 @@ weitsung50110/ollama_flask裡面我已經把ollama和flask都安裝完成了，�
 
     cd /app/flask
 
-#### 5. 會在/flask資料夾下面看到app2.py，直接輸入以下指令
+#### 5. 會在/flask資料夾下面看到app.py，直接輸入以下指令
 
-    python3 app2.py
+    python3 app.py
 
 #### 一定要指定port，1個container可以指定多個port
 如果你docker run的時候沒有輸入-p xxxx:5000 去指定port，這樣就會無法用127.0.0.1:xxxx來連進flask裡面，
