@@ -8,13 +8,18 @@ Using ollama nlp LLM to combine with flask to let the LLM can be shown on web. U
     flask 
 
 ### Main page
+At the main page you can see the beautiful logo I made, because I use Llama3 as LLM, so I put a llama in the middle of logo.😝
 
 ![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/0.png)
 
 ### Navigation bar
-You can connect to all my resources.
+You can connect to all my resources, you can find me on linkdin, medium and github.
 
 ![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/2.png)
+
+### Input area
+
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/4.png)
 
 ### Asking llama3 questions
     Who are you?
@@ -107,3 +112,4 @@ print出來的字串為Running on `127.0.0.1:5000`或`172.17.0.2:5000`，但**�
     WARNING:werkzeug: * Debugger is active!
     INFO:werkzeug: * Debugger PIN: 285-152-236
 
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/5.png)
