@@ -28,21 +28,34 @@
             </div>
             <div class="flex items-center space-x-2">
                 <input type="text" class="flex-grow px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="query-input" name="query-input" required placeholder="Type your message">
-                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
+                <button type="submit" id="GO" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
                     GO
                 </button>
             </div>
         </form>
-
         <div class="mt-6">
             {% if query_input %}
             <div class="bg-gray-100 p-4 rounded mb-4">
                 <p class="text-gray-700">{{ query_input }}</p>
             </div>
             {% endif %}
+
+            <div id="loading_animate" class="bg-gray-100 p-4 rounded flex items-center justify-center" style="display: none;">
+                <div class="flex space-x-4">
+                    <div class="w-4 h-4 bg-red-500 rounded-full animate-bounce"></div>
+                    <div class="w-4 h-4 bg-blue-500 rounded-full animate-bounce"></div>
+                    <div class="w-4 h-4 bg-yellow-500 rounded-full animate-bounce"></div>
+                </div>
+                <p class="text-gray-700 ml-4" id="status_txt">status_txt</p>
+            </div>
+
             {% if output %}
             <div class="bg-gray-100 p-4 rounded">
                 <p class="text-gray-700">{{ output }}</p> <!-- Use the safe filter to render HTML from output -->
+            </div>
+            {% else %}
+            <div id="welcome_div" class="flex items-center justify-center animate-pulse bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500">
+                <span class="text-white">歡迎來到Wei tsung的LLM網站!🎉</span>
             </div>
             {% endif %}
         </div>
@@ -60,4 +73,11 @@
     eventSource.onmessage = function(event) {
         document.getElementById('datetime').innerHTML = event.data;
     };
+
+    const status_txt = document.getElementById('status_txt');
+
+    document.getElementById('GO').addEventListener('click', () => {
+        status_txt.textContent = "Loading...";
+        loading_animate.style.display = "flex";
+    });
 </script>
