@@ -7,6 +7,7 @@ Using ollama nlp LLM to combine with flask to let the LLM can be shown on web. U
 - [Website Features Overview](#Website-Features-Overview)
 - [Dockers](#Dockers)
 - [Code Explanation](#Code-Explanation)
+- [Server-Sent Events (SSE)](#Server-Sent-Events-(SSE))
 
 需要的套件>
 
@@ -18,7 +19,7 @@ Using ollama nlp LLM to combine with flask to let the LLM can be shown on web. U
 ### Main page
 At the main page you can see the beautiful logo I made, because I use Llama3 as LLM, so I put a llama in the middle of logo.😝
 
-![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/0.png)
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/00.png)
 
 ### Navigation bar
 You can connect to all my resources, you can find me on linkdin, medium and github.
@@ -36,6 +37,9 @@ You can connect to all my resources, you can find me on linkdin, medium and gith
     Do you love me?
     
 ![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/3.png)
+
+### Timestamp
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/6.png)
 
 ## Docker
 #### 1. 先去把image pull下來
@@ -183,3 +187,58 @@ Jinja2 提供了一些強大的模板語法，讓我們可以在 HTML 文件中�
 在 Jinja2 模板語法中，所有的控制結構（如條件判斷和迴圈）都**必須以相應的 {% end %} 語句來結束**。這是為了明確定義控制結構的範圍，避免代碼混淆。
 
 我們可以看到 if 條件判斷用 {% endif %} 結束，for 迴圈用 {% endfor %} 結束。這些結束標記是必不可少的，否則模板引擎會無法正確解析模板，並且會拋出錯誤。
+
+## Server-Sent Events (SSE)
+#### 生成器函數 generate() 詳解：
+    def generate():
+    while True:
+        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')  # 取得當前時間並格式化
+        data = f"data: {current_time}\n\n"  # 根據SSE格式要求構建數據字符串
+        yield data  # 通過生成器返回數據給調用者（客戶端）
+        time.sleep(1)  # 每秒推送一次數據
+
+* `generate()` 函數使用了一個無窮循環 (`while True`)，每次循環都取得當前時間 (`datetime.now()`)，並將其格式化為 `%Y-%m-%d %H:%M:%S` 的字串形式。
+* 使用 `f-string` 將格式化後的時間插入到 `data` 字串中，並按照 SSE 的規範構建數據。
+* 通過 `yield` 返回 `data` 給調用者（客戶端），使得生成器可以被迭代並逐步返回新的數據。
+* `time.sleep(1)` 使生成器每秒鐘推送一次數據，實現即時更新效果。
+
+#### SSE 路由 (/stream) 的設置：
+
+    @app.route('/stream')
+    def stream():
+        return Response(generate(), mimetype='text/event-stream')
+
+在 Flask 應用中設置 `/stream` 路由，當客戶端訪問該路由時，會返回一個 `Response` 對象，其內容由 `generate()` 函數生成，
+並設置 `mimetype='text/event-stream'` 以指定這是一個 SSE 流。
+
+#### JavaScript 說明：
+
+    <script>
+        const eventSource = new EventSource('/stream');
+                
+        eventSource.onmessage = function(event) {
+            document.getElementById('datetime').innerHTML = event.data;
+        };
+    </script>
+
+1\. `const eventSource = new EventSource('/stream');` 
+* `EventSource` 是 HTML5 中引入的一種 API，它允許網頁從服務器端接收推送的事件。
+* `new EventSource('/stream')` 創建了一個新的 `EventSource` 對象，並指定了要訂閱的服務器端端點 `/stream`。
+這意味著客戶端將會向 `/stream`發送一條新的事件消息時，JavaScript 會自動觸發 `onmessage` 事件處理器函數。
+
+2\. `eventSource.onmessage = function(event) { ... };` 
+* 一旦客戶端訂閱成功，當服務器端向 `/stream` 發送一條新的事件消息時，JavaScript 會自動觸發 `onmessage` 事件處理器函數。
+* `event` 參數包含了從服務器端發送來的事件消息的相關信息，包括數據內容。
+
+3\. `document.getElementById('datetime').innerHTML = event.data;` 
+* 在 `onmessage` 事件處理器函數內部，這行代碼將服務器端發送來的數據 `event.data` 更新到 HTML 文檔中具有 `id="datetime"` 的元素內。
+* 通常情況下，`event.data` 是一段文本數據，它包含了服務器端發送的即時信息，例如時間戳、消息內容等。
+
+#### 工作流程： 
+* 當頁面加載時，JavaScript 代碼會創建一個 `EventSource` 對象，並發起對 `/stream` 的 HTTP GET 請求。
+* 一旦服務器端有新的事件消息到來，它會將該消息推送到所有訂閱了 `/stream` 的客戶端（即這裡的網頁）。
+* 客戶端接收到來自服務器端的事件消息後，透過 `onmessage` 事件處理器函數將消息內容更新到 HTML 中的指定元素（這裡是 `id="datetime"` 的元素）。
+
+樣就實現了一個基本的 SSE 客戶端，用於接收服務器端推送的事件消息並即時更新到網頁上。
+
+更詳細內容請看medium教學 >> [利用Ollama LLM、Flask、LangChain實作聊天機器人chat bot網站](https://medium.com/@weiberson/%E5%88%A9%E7%94%A8ollama-llm-flask-langchain%E5%92%8Ctailwind-css%E5%AF%A6%E4%BD%9C%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BAchat-bot%E7%B6%B2%E7%AB%99-b98a891977e8#5083).
