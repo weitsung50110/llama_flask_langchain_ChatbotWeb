@@ -13,9 +13,9 @@
 
     <div class="max-w-4xl mx-auto p-4 bg-white shadow-lg rounded-lg mt-10">
         <div class="flex items-center justify-center mb-4">
-            <img class="h-32 w-auto" src="../static/images/welcome4.png" alt="Welcome Image">
+            <img class="h-32 w-auto shadow-md hover:shadow-lg" src="../static/images/welcome4.png" alt="Welcome Image">
         </div>
-        <h1 class="text-3xl font-bold text-center mb-6">
+        <h1 class="text-3xl font-bold text-center mb-6 text-blue-600 hover:text-blue-800">
             Weiberson's llama Bot
             <button onclick="location.reload();" class="ml-2 px-2 py-1 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 focus:outline-none">Refresh</button>
         </h1>
@@ -46,8 +46,18 @@
             </div>
             {% endif %}
         </div>
+        <div class="mt-6 text-center">
+            <p class="text-gray-500">Time:</p>
+            <div id="datetime" class="text-4xl font-bold text-pink-500 hover:text-pink-600 transition duration-350 ease-in-out transform hover:scale-105">0</div>
+        </div>
     </div>
-
 </body>
 </html>
 
+<script>
+    const eventSource = new EventSource('/stream');
+            
+    eventSource.onmessage = function(event) {
+        document.getElementById('datetime').innerHTML = event.data;
+    };
+</script>

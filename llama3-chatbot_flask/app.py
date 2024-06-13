@@ -1,9 +1,10 @@
 from langchain_community.llms import Ollama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Response
 import logging
-import re
+import time
+from datetime import datetime, timedelta, timezone
 
 # 設定基本的日誌記錄
 logging.basicConfig(level=logging.DEBUG)
@@ -46,7 +47,19 @@ def initialise_llama3(text_sys):
         logging.error(f"Failed to initialize chatbot: {e}")
         raise
 
+# SSE 資料生成器，每秒推送一次當前時間
+def generate():
+    while True:
+        tz = timezone(timedelta(hours=8))  # UTC+8:00 for Taipei timezone
+        current_time = datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')  # 格式化為你需要的時間格式
+        data2 = f"data: {current_time}\n\n"
+        yield data2  # 通過生成器返回數據給調用者（客戶端）
+        time.sleep(1)  # 每秒推送一次數據
 
+# SSE 路由，設定 Content-Type 為 text/event-stream
+@app.route('/stream')
+def stream():
+    return Response(generate(), mimetype='text/event-stream')
 
 # 定義首頁路由
 @app.route('/', methods=['GET', 'POST'])
