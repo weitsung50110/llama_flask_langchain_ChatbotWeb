@@ -7,7 +7,7 @@ Using ollama nlp LLM to combine with flask to let the LLM can be shown on web. U
 - [Website Features Overview](#Website-Features-Overview)
 - [Dockers](#Dockers)
 - [Code Explanation](#Code-Explanation)
-- [Server-Sent Events (SSE)](#Server-Sent-Events(SSE))
+- [Server-Sent Events (SSE)](#Server-Sent-Events))
 
 需要的套件>
 
@@ -188,7 +188,7 @@ Jinja2 提供了一些強大的模板語法，讓我們可以在 HTML 文件中�
 
 我們可以看到 if 條件判斷用 {% endif %} 結束，for 迴圈用 {% endfor %} 結束。這些結束標記是必不可少的，否則模板引擎會無法正確解析模板，並且會拋出錯誤。
 
-## Server-Sent Events(SSE)
+## Server-Sent Events
 #### 生成器函數 generate() 詳解：
     def generate():
     while True:
