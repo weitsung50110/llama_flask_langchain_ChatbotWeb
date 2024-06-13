@@ -16,10 +16,11 @@ Using ollama nlp LLM to combine with flask to let the LLM can be shown on web. U
     flask
   
 ## Website Features Overview
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/agif.gif)
 ### Main page
 At the main page you can see the beautiful logo I made, because I use Llama3 as LLM, so I put a llama in the middle of logo.😝
 
-![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/00.png)
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/a0.png)
 
 ### Navigation bar
 You can connect to all my resources, you can find me on linkdin, medium and github.
@@ -37,6 +38,9 @@ You can connect to all my resources, you can find me on linkdin, medium and gith
     Do you love me?
     
 ![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/3.png)
+
+### Loading
+![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/a1.png)
 
 ### Timestamp
 ![](https://github.com/weitsung50110/ollama_flask_langchain_web/blob/main/github_imgs/6.png)
