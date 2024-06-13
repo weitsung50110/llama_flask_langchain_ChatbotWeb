@@ -7,7 +7,7 @@ Using ollama nlp LLM to combine with flask to let the LLM can be shown on web. U
 - [Website Features Overview](#Website-Features-Overview)
 - [Dockers](#Dockers)
 - [Code Explanation](#Code-Explanation)
-- [Server-Sent Events (SSE)](#Server-Sent-Events))
+- [Server-Sent Events (SSE)](#Server-Sent-Events)
 
 需要的套件>
 
