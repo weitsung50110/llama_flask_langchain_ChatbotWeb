@@ -19,7 +19,7 @@
         </div>
         <h1 class="text-3xl font-bold text-center mb-6 text-blue-600 hover:text-blue-800">
             Weiberson's llama Bot
-            <button onclick="location.reload();" class="ml-2 px-2 py-1 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 focus:outline-none">Refresh</button>
+            <button onclick="location.reload();" class="ml-2 px-2 py-1 bg-gray-300 text-gray-800 rounded">Refresh</button>
         </h1>
 
         <form id="chat-form" method="POST" action="/">
@@ -29,8 +29,8 @@
                 <a href="https://tw.linkedin.com/in/weiberson" target="_blank" class="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-600 focus:outline-none">LinkedIn</a>
             </div>
             <div class="flex items-center space-x-2">
-                <input type="text" class="flex-grow px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" id="query-input" name="query-input" required placeholder="Type your message">
-                <button type="submit" id="GO" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
+                <input type="text" class="flex-grow px-4 py-2 border border-gray-300 rounded focus:outline-none " id="query-input" name="query-input" required placeholder="Type your message">
+                <button type="submit" id="GO" class="px-4 py-2 bg-blue-100 ">
                     GO
                 </button>
             </div>
@@ -56,14 +56,14 @@
                 <p class="text-gray-700">{{ output }}</p> <!-- Use the safe filter to render HTML from output -->
             </div>
             {% else %}
-            <div id="welcome_div" class="flex items-center justify-center animate-pulse bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500">
-                <span class="text-white">歡迎來到Wei tsung的LLM網站!🎉</span>
+            <div id="welcome_div" class="flex items-center justify-center animate-pulse">
+                <span class="text-black">歡迎來到Wei tsung的LLM網站!🎉</span>
             </div>
             {% endif %}
         </div>
         <div class="mt-6 text-center">
             <p class="text-gray-500">Time:</p>
-            <div id="datetime" class="text-4xl font-bold text-pink-500 hover:text-pink-600 transition duration-350 ease-in-out transform hover:scale-105">0</div>
+            <div id="datetime" class="text-4xl font-bold text-pink-500 hover:text-pink-600 transition">0</div>
         </div>
     </div>
 </body>
