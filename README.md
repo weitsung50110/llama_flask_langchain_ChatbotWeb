@@ -245,4 +245,12 @@ Jinja2 提供了一些強大的模板語法，讓我們可以在 HTML 文件中�
 
 樣就實現了一個基本的 SSE 客戶端，用於接收服務器端推送的事件消息並即時更新到網頁上。
 
+#### 如果遇到error
+`{"error":"model 'llama2' not found, try pulling it first"} `，可以參考這篇issue
+https://github.com/QuivrHQ/quivr/issues/2056
+
+是OllamaEmbeddings的問題，請指名你想使用的Model就可以，不然default就會為llama2~
+
+    embeddings2 = OllamaEmbeddings(model="llama3")
+
 更詳細內容請看medium教學 >> [利用Ollama LLM、Flask、LangChain實作聊天機器人chat bot網站](https://medium.com/@weiberson/%E5%88%A9%E7%94%A8ollama-llm-flask-langchain%E5%92%8Ctailwind-css%E5%AF%A6%E4%BD%9C%E8%81%8A%E5%A4%A9%E6%A9%9F%E5%99%A8%E4%BA%BAchat-bot%E7%B6%B2%E7%AB%99-b98a891977e8#5083).
