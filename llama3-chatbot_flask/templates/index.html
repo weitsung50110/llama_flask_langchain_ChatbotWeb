@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
     <title>Weiberson's llama Bot</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon2.ico') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </head>
 
 <body class="bg-gray-100">
@@ -64,20 +66,6 @@
             <div id="datetime" class="text-4xl font-bold text-pink-500 hover:text-pink-600 transition duration-350 ease-in-out transform hover:scale-105">0</div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
-
-<script>
-    const eventSource = new EventSource('/stream');
-            
-    eventSource.onmessage = function(event) {
-        document.getElementById('datetime').innerHTML = event.data;
-    };
-
-    const status_txt = document.getElementById('status_txt');
-
-    document.getElementById('GO').addEventListener('click', () => {
-        status_txt.textContent = "Loading...";
-        loading_animate.style.display = "flex";
-    });
-</script>
